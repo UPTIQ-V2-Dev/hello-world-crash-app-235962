@@ -4,4 +4,4 @@ export const STORAGE_KEYS = {
     USER_DATA: 'user_data'
 } as const;
 
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api/v1';
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://google.com';
