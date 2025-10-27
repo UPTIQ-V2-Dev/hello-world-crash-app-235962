@@ -2,7 +2,9 @@ import axios from 'axios';
 
 export const App = () => {
     const handleHazardClick = () => {
-        throw new Error('Hello World');
+        // Cause a complete UI crash by accessing undefined property in a way that breaks rendering
+        const crashElement = null;
+        (crashElement as any).nonExistentProperty.deepProperty.render();
     };
 
     const handleNetworkErrorClick = async () => {
@@ -14,6 +16,14 @@ export const App = () => {
             console.error('Network Error:', error);
             throw error;
         }
+    };
+
+    const handleErrorLogClick = () => {
+        console.error('This is a test error logged to console', {
+            timestamp: new Date().toISOString(),
+            errorType: 'Manual Test Error',
+            details: 'This error was triggered by the Error Log button'
+        });
     };
 
     const handleFilterErrorClick = () => {
@@ -48,6 +58,12 @@ export const App = () => {
                 className='px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded font-semibold'
             >
                 Hazard Button
+            </button>
+            <button
+                onClick={handleErrorLogClick}
+                className='px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded font-semibold'
+            >
+                Error Log Button
             </button>
             <button
                 onClick={handleNetworkErrorClick}
