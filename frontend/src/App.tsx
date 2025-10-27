@@ -52,12 +52,7 @@ export const App = () => {
     };
 
     const handle404Click = async () => {
-        try {
-            await api.get('/non-existing-endpoint');
-        } catch (error) {
-            console.error('404 Error:', error);
-            throw error;
-        }
+        await api.get('/non-existing-endpoint');
     };
 
     return (
