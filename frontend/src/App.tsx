@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { api } from '@/lib/api';
 
 export const App = () => {
     const handleHazardClick = () => {
@@ -50,6 +51,15 @@ export const App = () => {
         }
     };
 
+    const handle404Click = async () => {
+        try {
+            await api.get('/non-existing-endpoint');
+        } catch (error) {
+            console.error('404 Error:', error);
+            throw error;
+        }
+    };
+
     return (
         <div className='h-screen w-screen flex flex-col items-center justify-center gap-4'>
             <h1 className='text-4xl font-bold'>Hello World!</h1>
@@ -76,6 +86,12 @@ export const App = () => {
                 className='px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded font-semibold'
             >
                 Filter Error Button
+            </button>
+            <button
+                onClick={handle404Click}
+                className='px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded font-semibold'
+            >
+                404 Button
             </button>
         </div>
     );
