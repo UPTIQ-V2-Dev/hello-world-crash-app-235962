@@ -52,7 +52,7 @@ export const App = () => {
     };
 
     const handle404Click = async () => {
-        await api.get('/non-existing-endpoint');
+        await api.post('/non-existing-endpoint', { data: 'test' });
     };
 
     return (
